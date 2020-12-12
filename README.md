@@ -1,4 +1,2 @@
 # octo-giggle
-Wolfram Mathematica Codes
-
-(minor change)
+Wolfram Mathematica Codes.
