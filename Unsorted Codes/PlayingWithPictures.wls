@@ -1,71 +1,45 @@
 #!/usr/bin/env wolframscript
 
+(*COMMAND TO EXPORT OUTPUT*)
+location := "C:\\Users\\Cystennin\\Desktop\\scriptresults\\";
+path[filename_] := location<>filename<>".png";
+exportOutput[out_, filename_] := Export[path[filename], out];
 
-(*
-lady = CloudImport@ URL["https://github.com/13saints/public-domain-images/blob/main/taylor-harding-p1udGcOaQ2g-unsplash.jpg"]
-
-
-xfruit = Import["C:\\Users\\Cystennin\\Desktop\\GitHub\\public-domain-images\\dainis-graveris-bOxV5KUPJS4-unsplash.jpg"]
-art = Import["C:\\Users\\Cystennin\\Desktop\\GitHub\\public-domain-images\\104720absdl.jpg"]
-
-
-location = "C:\\Users\\Cystennin\\Desktop\\scriptresults\\"
-path[filename_] := location<>filename<>".png" (* <> is the infix operator for `StringJoin`*)
-exportOutput[out_, filename_] := Export[path[filename], out]
+(*LOAD IMAGES YOU WANT TO MANIPULATE. ENTER URL OR LOCAL PATH.*)
+input1 := Import["C:\\Users\\Cystennin\\Desktop\\GitHub\\public-domain-images\\104720absdl.jpg"];
+input2 := Import["https://github.com/13saints/public-domain-images/blob/main/taylor-harding-p1udGcOaQ2g-unsplash.jpg"];
 
 
-(* ``edge detection`` *)
-edet = ImageAssemble[Table[EdgeDetect[lady, r, t], {r, {2, 4, 6}}, {t, {.01, .05, .1}}], Background -> 1, 
- Spacings -> 5];
+(*EdgeDetect + ImageAssemble. Gives a collage with edges marked.*)
+output1 := ImageAssemble[Table[EdgeDetect[input1, r, t], {r, {2, 4, 6}}, {t, {.01, .05, .1}}], 
+							Background -> 1, Spacings -> 5];
+
+(*ImageRestyle IS VERY COMPUTATIONALLY INTENSIVE. ImageRestyle restyles arg1 in the style of arg2.*)
+output2 := ImageRestyle[input2, input1];
+
+(*RemoveBackground removes a given color from the background.*)
+output3 := RemoveBackground[art, {Background, "Yellow"}];
+
+(*DesaturateExcept turns every other color gray.*)
+output4 := With[{image = img},
+ 				GraphicsRow[{image, ResourceFunction["DesaturateExcept"][image, Red]}]];
+
+(*Colorize takes grayscale image and turns dark into blue, light into green, and shine into red.*)
+output5 := Colorize[input2];
+
+(*!~ImageColorize DOWNLOADS 200 MB OF CONTENT. Using various neural nets, it tries to colorize 
+					grayscale image. Default is red-biased.*)
+output6 := ResourceFunction["ImageColorize"][input2];
+
+(*The function below takes a grayscale image and tries to turn is psychedelic. I had input formatting
+					issues and could not get it to work with anything other than the image shown in 
+					the example on the wolfram documentation.*)
+output7 := ImageApply[{Sin[Pi #*4], Sin[Pi], Sin[Pi #*3]}&, input2];
 
 
+(*Replace "result" with the name of the output file. *)
+exportOutput[output1, "result"]
 
-reim = ImageRestyle[lady, art]
-
-
-RemoveBackground[art, {Background, "Yellow"}]
-
-
-exportOutput[RemoveBackground[art, {"Background", Yellow}], "artyellowless"]
-
-
-rrr := 200
-ggl := 100
-ggh := 50
-bbb := 50
-
-res = ImageApply[
- If[#[[1]] > rrr && #[[2]] > ggl && #[[2]] < ggh && #[[3]] < bbb, #, {192, 192, 192}] &, xfruit]
- 
-exportOutput[xfruit, "xFruit"]
-
-
-Print@ DominantColors[xfruit]
-*)
-
-
-
-
-cersei = Import["C:\\Users\\Cystennin\\Desktop\\scriptresults\\artyellowless.png"]
-mcphee = Import["C:\\Users\\Cystennin\\Desktop\\GitHub\\public-domain-images\\karikatura-damskej-mody.jpg"]
-
-(* imgs = ConformImages@ {cersei, mcphee}
-
-ImageAssemble[imgs[[1]], imgs[[2]]]
-
-ImageAssemble[imgs[[2]], imgs[[1]]]
-
-
-imgs2 = {imgs[[1]], imgs[[2]], imgs[[2]], imgs[[1]]} 
-
-
-
-
-coll = ImageAssemble[imgs] 
-
- *)
-
-exportOutput[cersei, "collage"]
 
 
 

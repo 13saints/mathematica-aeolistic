@@ -1,16 +1,6 @@
 #!/usr/bin/env wolframscript
 
 
-sexyIn = Import["C:\\Users\\Cystennin\\Desktop\\scriptresults\\sexy-girl.png"]
-
-sexyOut = ImageApply[{Sin[Pi #*4], Sin[Pi], Sin[Pi #*3]}&, sexyIn]
-exportOutput[sexyOut, "SineOnGirl"]
-
-
-
-
-
-
 
 
 
@@ -42,6 +32,7 @@ exportOutput[sexyOut, "SineOnGirl"]
 
 Kakashi Public License v1.0 affirmed for this code.
 __________________________________________________________________
+
 KAKASHI PUBLIC LICENSE
 
 Version 1.0, December 2020
@@ -71,3 +62,4 @@ unconditionally waives all of his copyright and related rights.
 _____________________________________________________________________
 
 *)
+

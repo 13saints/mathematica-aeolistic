@@ -1,22 +1,18 @@
 #!/usr/bin/env wolframscript
 
 
-xfruit = Import["C:\\Users\\Cystennin\\Desktop\\GitHub\\public-domain-images\\dainis-graveris-bOxV5KUPJS4-unsplash.jpg"]
-
-res = With[{image = xFruit},
- GraphicsRow[{image, ResourceFunction["DesaturateExcept"][image, Red]}]]
-
-
-
-location = "C:\\Users\\Cystennin\\Desktop\\scriptresults\\"
-path[filename_] := location<>filename<>".png" (* <> is the infix operator for `StringJoin`*)
-exportOutput[out_, filename_] := Export[path[filename], out]
 
 
 
 
 
-exportOutput[res, "xFruit2"]
+
+
+
+
+
+
+
 
 
 
@@ -36,6 +32,7 @@ exportOutput[res, "xFruit2"]
 
 Kakashi Public License v1.0 affirmed for this code.
 __________________________________________________________________
+
 KAKASHI PUBLIC LICENSE
 
 Version 1.0, December 2020
@@ -65,3 +62,4 @@ unconditionally waives all of his copyright and related rights.
 _____________________________________________________________________
 
 *)
+

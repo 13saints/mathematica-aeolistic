@@ -1,53 +1,27 @@
 #!/usr/bin/env wolframscript
 
+
+
+rock = {"Mercury", "Venus", "Earth", "Mars"};
+gas = {"Jupiter", "Saturn"};
+ice = {"Uranus", "Neptune"};
+plutoid = {"Pluto", "Haumea", "Makemake", "Eris"};
+orbits = Flatten[{PlanetData[rock, "OrbitPath"], 
+					PlanetData[gas, "OrbitPath"],
+					PlanetData[ice, "OrbitPath"],
+    				MinorPlanetData[plutoid, "OrbitPath"]}];
+all = Flatten[{rock, gas, ice, plutoid}]
+colors = {Red, Blue, Green, Magenta , Red, Blue, Green, Magenta, Red, 
+   Blue, Green, Magenta};
+img = GraphicsRow[{Graphics3D[Table[{colors[[i]], orbits[[i]]}, {i, 1, 12}]],
+  Column[
+   Table[{colors[[i]], all[[i]]}, {i, 1, 12}]]}];
+
 location = "C:\\Users\\Cystennin\\Desktop\\scriptresults\\"
-path[filename_] := location<>filename<>".png" (* <> is the infix operator for `StringJoin`*)
+path[filename_] := location<>filename<>".png" 
 exportOutput[out_, filename_] := Export[path[filename], out]
 
-sexygirl = Import["C:\\Users\\Cystennin\\Desktop\\GitHub\\public-domain-images\\taylor-harding-p1udGcOaQ2g-unsplash.jpg"]
-
-sexygirlremix = (*ResourceFunction["ImageColorize"][sexygirl]*) (* Colorize[sexygirl] *)
-				EdgeDetect[sexygirl]
-exportOutput[sexygirlremix, "outline"]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+exportOutput[img, "PlanetaryOrbits"] 
 
 
 
@@ -76,7 +50,7 @@ exportOutput[sexygirlremix, "outline"]
 
 (* 
 
-Kakashi Public License v1.0 affirmed for this shitty piece of code.
+Kakashi Public License v1.0 affirmed for this code.
 __________________________________________________________________
 
 KAKASHI PUBLIC LICENSE
@@ -108,3 +82,4 @@ unconditionally waives all of his copyright and related rights.
 _____________________________________________________________________
 
 *)
+
