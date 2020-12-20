@@ -67,19 +67,19 @@ GN[func_,lat_]:=
 {society, Nest[GN[walk,#]&, society, t]}
 ]
 
-a = AbsoluteTime[];
-{first, last} = randomWalkers[100, 0.65, 1, 1, 1, 1, 10000];
+startTime = AbsoluteTime[];
+{firstImg, lastImg} = randomWalkers[100, 0.65, 1, 1, 1, 1, 10000];
 
 m = Max[first];
-picture2 = Show[GraphicsArray[Map[Graphics[RasterArray[Map[
+image = Show[GraphicsArray[Map[Graphics[RasterArray[Map[
 				If[# === 0, GrayLevel[1], GrayLevel[#[[2]]/m]]&, #, {2}]], 
-						AspectRatio -> Automatic]&, {first, last}]]];
+						AspectRatio -> Automatic]&, {firstImg, lastImg}]]];
 
 Import["ExportImage.wls"]
 
-exportImage[picture2, "comp10k"]
-b = AbsoluteTime[];
-Print[b-a]
+exportImage[image, "comp10k"]
+stopTime = AbsoluteTime[];
+Print[stopTime - startTime]
 
 
 
