@@ -1,7 +1,7 @@
 #!/usr/bin/env wolframscript
 
-(* Remove["Global`*"] *)
-(*n=4; p=.25; g=.75; m=10; s=3; r=4; k=0;*)
+(*Ch1. Modeling Society with Mobile, Heterogeneous Agents.*)
+
 randomWalkers[n_,p_,g_,m_,s_,r_,t_]:=
 Module[{society,RND,k,walk,GN},	
 (*Creating the lattice of individuals:*)
@@ -80,13 +80,3 @@ Import["ExportImage.wls"]
 exportImage[image, "comp10k"]
 stopTime = AbsoluteTime[];
 Print[stopTime - startTime]
-
-
-
-
-
-
-
-
-
-
