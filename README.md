@@ -1,2 +1,2 @@
-# octo-giggle
+# mathematica-aeolistic
 Wolfram Mathematica Codes.
